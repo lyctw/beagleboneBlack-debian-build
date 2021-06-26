@@ -38,6 +38,6 @@ sudo sh -c "echo 'iface eth0 inet dhcp  ' >> $WORKSPACE/rootfs/etc/network/inter
 sync
 
 # Unmount rootfs, done.
-ll -h $WORKSPACE/rootfs
+ls $WORKSPACE/rootfs
 sleep 2
 sudo umount $WORKSPACE/rootfs

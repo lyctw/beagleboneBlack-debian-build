@@ -20,7 +20,7 @@ sudo dd if=$WORKSPACE/u-boot/u-boot.img of=${DISK} count=2 seek=1 bs=384k
 sudo sfdisk ${DISK} <<-__EOF__
 4M,,L,*
 __EOF__
-sudo mkfs.ext4 -L rootfs -O ^metadata_c.sum,^64bit ${DISK}1
+sudo mkfs.ext4 -L rootfs -O ^64bit ${DISK}1
 # Mount rootfs
 mkdir -p  $WORKSPACE/rootfs
 sudo mount ${DISK}1 $WORKSPACE/rootfs
@@ -30,9 +30,11 @@ sudo cp -v $WORKSPACE/u-boot/MLO $WORKSPACE/rootfs/opt/backup/uboot/
 sudo cp -v $WORKSPACE/u-boot/u-boot.img $WORKSPACE/rootfs/opt/backup/uboot/
 # Download debian rootfs
 wget -c https://rcn-ee.com/rootfs/eewiki/minfs/debian-10.4-minimal-armhf-2020-05-10.tar.xz
-tar xf debian-10.4-minimal-armhf-2020-05-10.tar.xz
+if [ ! -d $WORKSPACE/debian-10.4-minimal-armhf-2020-05-10/ ]; then
+  tar xf $WORKSPACE/debian-10.4-minimal-armhf-2020-05-10.tar.xz
+fi
 # Install rootfs
-sudo tar xfvp $WORKSPACE/debian-*-*-armhf-*/armhf-rootfs-*.tar -C $WORKSPACE/rootfs/
+sudo tar xfvp $WORKSPACE/debian-10.4-minimal-armhf-2020-05-10/armhf-rootfs-debian-buster.tar -C $WORKSPACE/rootfs
 sync
 sudo chown root:root $WORKSPACE/rootfs/
 sudo chmod 755 $WORKSPACE/rootfs/
