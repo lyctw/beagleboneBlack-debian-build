@@ -40,7 +40,7 @@ sudo chown root:root $WORKSPACE/rootfs/
 sudo chmod 755 $WORKSPACE/rootfs/
 
 # 
-ll -h $WORKSPACE/rootfs
+sudo ls -la $WORKSPACE/rootfs
 sync
 sleep 2
 echo "Prepare debian rootfs done. Then run ./build_linux"
