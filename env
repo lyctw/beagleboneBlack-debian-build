@@ -1,0 +1,9 @@
+
+
+TOOLCHAIN_PATH=$(pwd)/armv7-eabihf--glibc--bleeding-edge-2020.08-1/bin
+
+export WORKSPACE=$(pwd)
+export CC=arm-linux-
+export CROSS_COMPILE=$CC
+export ARCH=arm
+export PATH=$TOOLCHAIN_PATH:$PATH
